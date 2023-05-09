@@ -1,14 +1,17 @@
+########################################
 #################### External Data
+########################################
 
 import ExternalMethods as M
-import cv2
 
+########################################
 #################### Internal Data
+########################################
 
 Total_T_White = 50
 Total_T_Red = 100
-Total_White = 11
-Total_Red = 20
+Total_White = 170
+Total_Red = 181
 
 class C:
     BLUE = '\033[94m'
@@ -17,14 +20,8 @@ class C:
     RED = '\033[93m'
     END = '\033[0m'
 
-
-#################### Main
-
-TRed, TWhite, Red, White = M.CollectData(Total_T_Red, Total_T_White, Total_Red, Total_White)
-
-# EnhanceData()
-
 Train_Feat = []; Train_Label = []; Test_Data = []
+
 UsedFeatures = [
     "Circularity" * 1, 
     "Area" * 1, 
@@ -39,26 +36,48 @@ UsedFeatures = [
     "Euler Number" * 1
     ]
 
+UsedEnhancements = [
+        "Blurring" * 0,
+        "Sharpening" * 0,
+        "Noise Reduction" * 0,
+        "Color Weight" * 0
+    ]
+
+########################################
+#################### Main
+######################################## 
 print(C.BLUE, "Activated Features:\n", UsedFeatures, C.END)
 
+#################### Step #1: Organize Data Into Lists
+TRed, TWhite, Red, White = M.CollectData(Total_T_Red, Total_T_White, Total_Red, Total_White)
+
+#################### Step #2: Enhance/Improve Data
+#################### Step #3: Collect Feature Information
+
 for Image in TRed:
+    Image = M.EnhanceData(Image, UsedEnhancements)
     Features = M.ExtractFeaturesOfData(Image, UsedFeatures)
     Train_Feat.append(Features)
     Train_Label.append(0)
 
 for Image in TWhite:
+    Image = M.EnhanceData(Image, UsedEnhancements)
     Features = M.ExtractFeaturesOfData(Image, UsedFeatures)
     Train_Feat.append(Features)
     Train_Label.append(1)
 
 for Image in Red:
+    Image = M.EnhanceData(Image, UsedEnhancements)
     Features = M.ExtractFeaturesOfData(Image, UsedFeatures)
     Test_Data.append(Features)
 
 for Image in White:
+    Image = M.EnhanceData(Image, UsedEnhancements)
     Features = M.ExtractFeaturesOfData(Image, UsedFeatures)
     Test_Data.append(Features)
 
-
+#################### Step #4: Apply Multiply SVM Kernals
 Results = M.RunDataThroughSVM(Train_Feat, Train_Label, Test_Data, Total_Red)
+
+#################### Step #5: Display Results
 M.PrintResults(Results, Total_Red + Total_White, C)

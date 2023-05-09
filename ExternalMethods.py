@@ -1,11 +1,15 @@
+########################################
 #################### External Data
+########################################
 
 import cv2, math
 import numpy as np
 from sklearn import svm
 from skimage import feature
 
+########################################
 #################### Subroutines
+########################################
 
 def CollectData(T_Group_1, T_Group_2, Group_1, Group_2):
 
@@ -30,8 +34,14 @@ def CollectData(T_Group_1, T_Group_2, Group_1, Group_2):
    
     return TrainingRed, TrainingWhite, Red, White
 
-def EnhanceData(): 
-   return
+def EnhanceData(OriginalImage, EnhancementFlag): 
+    Final = OriginalImage
+    if (EnhancementFlag[0]): Final = GaussianBlur(Final)
+    if (EnhancementFlag[1]): Final = Sharpen(Final)
+    if (EnhancementFlag[2]): Final = MedianFilter(Final, 3)
+    if (EnhancementFlag[3]): Final = ApplyColorWeight(Final, (.8, .3, .1))
+
+    return Final
 
 def IsolateForegroundFromBackground(OriginalImage, Test=False):
     OriginalImage = ContrastStretch(OriginalImage); 
@@ -58,17 +68,18 @@ def IsolateForegroundFromBackground(OriginalImage, Test=False):
 
 def ExtractFeaturesOfData(OriginalImage, FeatureFlag):
     FeatureList = []
+    ForegroundImage = IsolateForegroundFromBackground(OriginalImage)[3]
 
     if FeatureFlag[0]: FeatureList.append(Circularity(OriginalImage)[0])
     if FeatureFlag[1]: FeatureList.append(Circularity(OriginalImage)[1])
     if FeatureFlag[2]: FeatureList.append(Circularity(OriginalImage)[2])
-    if FeatureFlag[3]: FeatureList += LBP(OriginalImage)
-    if FeatureFlag[4]: FeatureList.append(HistogramFeatures(OriginalImage)[1])
-    if FeatureFlag[5]: FeatureList.append(HistogramFeatures(OriginalImage)[2])
-    if FeatureFlag[5]: FeatureList.append(HistogramFeatures(OriginalImage)[3])
-    if FeatureFlag[6]: FeatureList.append(ColorTotal(OriginalImage, "R"))
-    if FeatureFlag[7]: FeatureList.append(ColorTotal(OriginalImage, "G"))
-    if FeatureFlag[8]: FeatureList.append(ColorTotal(OriginalImage, "B"))
+    if FeatureFlag[3]: FeatureList += LBP(ForegroundImage)
+    if FeatureFlag[4]: FeatureList.append(HistogramFeatures(ForegroundImage)[1])
+    if FeatureFlag[5]: FeatureList.append(HistogramFeatures(ForegroundImage)[2])
+    if FeatureFlag[5]: FeatureList.append(HistogramFeatures(ForegroundImage)[3])
+    if FeatureFlag[6]: FeatureList.append(ColorTotal(ForegroundImage, "R"))
+    if FeatureFlag[7]: FeatureList.append(ColorTotal(ForegroundImage, "G"))
+    if FeatureFlag[8]: FeatureList.append(ColorTotal(ForegroundImage, "B"))
     if FeatureFlag[9]: FeatureList.append(EulerNumber(OriginalImage))
 
     return FeatureList
@@ -98,7 +109,9 @@ def PrintResults(Results, Total, C):
     for R in range(len(Results)):
         print(C.GREEN, "Correct results of kernal " + str(R) + ":", str(round(Results[R]/Total * 100, 2)) + '%', C.END)
 
+########################################
 #################### Feature Methods
+########################################
 
 def Circularity(OriginalImage):
     Foreground = IsolateForegroundFromBackground(OriginalImage)[2]
@@ -140,8 +153,9 @@ def EulerNumber(OriginalImage):
         if Stat[cv2.CC_STAT_AREA] < 0: HoleTotal += 1
     return ObjectTotal - HoleTotal
 
-
+########################################
 #################### Utility Methods
+########################################
 
 def IsolateObjects(Original, Thresh):
   cnt, grgb = cv2.findContours(Thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
@@ -195,8 +209,9 @@ def ApplyThresholdMask(OriginalImage, BinaryImage):
     CutOut = cv2.bitwise_and(OriginalImage, BinaryImage)
     return CutOut
 
-
-#################### Image Enhancement Methods
+########################################
+#################### Enhancement Methods
+########################################
 
 def ContrastStretch(OriginalImage):
     min_val = np.min(OriginalImage)
@@ -204,18 +219,8 @@ def ContrastStretch(OriginalImage):
     Stretched = cv2.normalize(OriginalImage, None, 0, 255, cv2.NORM_MINMAX)
     return Stretched
 
-def GausssianBlur(OriginalImage, size=5):
+def GaussianBlur(OriginalImage, size=5):
    return cv2.GaussianBlur(OriginalImage, (size, size), 0)
-
-#################### Filter Methods
-
-def Invert(OriginalImage):
-   inverted = np.abs(OriginalImage - 255)
-   return inverted
-
-def BinInvert(OriginalImage):
-   inverted = cv2.bitwise_not(OriginalImage)
-   return inverted
 
 def Sharpen(OriginalImage):
     K = np.array(
@@ -229,14 +234,43 @@ def Sharpen(OriginalImage):
     Sharpened = cv2.filter2D(OriginalImage, -1, K)
     return Sharpened
 
-def Blur(OriginalImage):
+def Smooth(OriginalImage):
     K = np.array(
        [
-            [1/9, 1/9, 1/9],
-            [1/9, 1/9, 1/9],
-            [1/9, 1/9, 1/9]
+            [0, 1, 0],
+            [1, 4, 1],
+            [0, 1, 0]
         ]
     )
 
-    Blurred = cv2.filter2D(OriginalImage, -1, K)
-    return Blurred
+    Smooth = cv2.filter2D(OriginalImage, -1, K)
+    return Smooth
+
+def MedianFilter(OriginalImage, Size):
+    Filtered = cv2.medianBlur(OriginalImage, Size)
+    return Filtered
+
+def ApplyColorWeight(OriginalImage, W=(1, 1, 1)):
+    B, G, R = cv2.split(OriginalImage)
+    
+    R = R * W[0]
+    G = G * W[1]
+    B = B * W[2]
+
+    NewImage = cv2.merge((
+        B.astype(np.uint8), 
+        G.astype(np.uint8), 
+        R.astype(np.uint8)))
+    return NewImage
+
+########################################
+#################### Filter Methods
+########################################
+
+def Invert(OriginalImage):
+   inverted = np.abs(OriginalImage - 255)
+   return inverted
+
+def BinInvert(OriginalImage):
+   inverted = cv2.bitwise_not(OriginalImage)
+   return inverted
