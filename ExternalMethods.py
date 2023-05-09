@@ -1,7 +1,9 @@
 #################### External Data
 
-import cv2
+import cv2, math
 import numpy as np
+from sklearn import svm
+from skimage import feature
 
 #################### Subroutines
 
@@ -33,12 +35,12 @@ def EnhanceData():
 
 def IsolateForegroundFromBackground(OriginalImage, Test=False):
     OriginalImage = ContrastStretch(OriginalImage); 
-    ThresholdImage = GlobalThreshold(OriginalImage, 137); 
+    ThresholdImage = GlobalThreshold(OriginalImage, 130); 
     ThresholdImage = BinInvert(ThresholdImage); 
 
-    Contours = IsolateObjects(OriginalImage, ThresholdImage);
+    Contours = IsolateObjects(OriginalImage, ThresholdImage)
 
-    FinalImage = [0, 0];
+    FinalImage = [0, 0]
     for contourIndex in range(len(Contours)):
         if (GetBinaryTotal(Contours[contourIndex])[0] > FinalImage[1]):
             FinalImage[0] = Contours[contourIndex]
@@ -52,15 +54,71 @@ def IsolateForegroundFromBackground(OriginalImage, Test=False):
         cv2.imshow('image', TestOutput)
         cv2.waitKey(0)
 
-        
+    return [OriginalImage, ThresholdImage, ContourResult, Final]
 
-    return Final
+def ExtractFeaturesOfData(OriginalImage, FeatureFlag):
+    FeatureList = []
 
-def ExtractFeaturesOfData():
-   return
+    if FeatureFlag[0]: FeatureList.append(Circularity(OriginalImage)[0])
+    if FeatureFlag[1]: FeatureList.append(Circularity(OriginalImage)[1])
+    if FeatureFlag[2]: FeatureList.append(Circularity(OriginalImage)[2])
+    if FeatureFlag[3]: FeatureList += LBP(OriginalImage)
+    if FeatureFlag[4]: FeatureList.append(HistogramFeatures(OriginalImage)[1])
+    if FeatureFlag[5]: FeatureList.append(HistogramFeatures(OriginalImage)[2])
 
-def RunDataThroughSVM():
-   return
+    return FeatureList
+
+def RunDataThroughSVM(train_feat, train_label, test_data, LowRange):
+    results = []
+    clf = svm.SVC(kernel='linear').fit(train_feat, train_label)
+    results.append(clf.predict(test_data))
+    clf = svm.SVC(kernel='poly').fit(train_feat, train_label)
+    results.append(clf.predict(test_data))
+    clf = svm.SVC(kernel='rbf').fit(train_feat, train_label)
+    results.append(clf.predict(test_data))
+    clf = svm.SVC(kernel='sigmoid').fit(train_feat, train_label)
+    results.append(clf.predict(test_data))
+
+    AdjustedResults = []
+    for result in results:
+        correct = 0
+        for item in range(len(result)):
+            if (result[item] == 0 and item < LowRange): correct += 1
+            elif (result[item] == 1 and item >= LowRange): correct += 1
+        AdjustedResults.append(correct)
+
+    return AdjustedResults
+
+def PrintResults(Results, Total):
+    for R in range(len(Results)):
+        print("Correct results of kernal " + str(R) + ":", str(round(Results[R]/Total * 100, 2)) + '%')
+
+#################### Feature Methods
+
+def Circularity(OriginalImage):
+    Foreground = IsolateForegroundFromBackground(OriginalImage)[2]
+    Contours, _ = cv2.findContours(Foreground, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    Contour = Contours[0]
+    A = cv2.contourArea(Contour)
+    P = cv2.arcLength(Contour, True)
+    C = 4 * np.pi * (A / (P * P))
+    return [round(C, 4), round(A, 4), round(P, 1)]
+
+def LBP(OriginalImage):
+    OriginalImage = cv2.cvtColor(OriginalImage, cv2.COLOR_BGR2GRAY)
+    LBP = feature.local_binary_pattern(OriginalImage, 24, 3, method="uniform");
+    hist, _ = np.histogram(LBP.ravel(), bins=range(0, 27), range=(0, 27))
+    return hist.tolist();
+
+def HistogramFeatures(OriginalImage):
+    OriginalImage = cv2.cvtColor(OriginalImage, cv2.COLOR_BGR2GRAY)
+    Histogram = cv2.calcHist([OriginalImage], [0], None, [256], [0, 256])
+    Histogram = OriginalImage.flatten()
+    Mean = sum(Histogram / 256)
+    NormalizedHistogram = Histogram / np.sum(Histogram)
+    Entropy = -np.sum(NormalizedHistogram * np.log2(NormalizedHistogram + 1e-10))
+    StandardDeviation = np.std(Histogram)
+    return [Histogram, Mean, Entropy, StandardDeviation]
 
 #################### Utility Methods
 
