@@ -10,6 +10,14 @@ Total_T_Red = 100
 Total_White = 11
 Total_Red = 20
 
+class C:
+    BLUE = '\033[94m'
+    CYAN = '\033[96m'
+    GREEN = '\033[92m'
+    RED = '\033[93m'
+    END = '\033[0m'
+
+
 #################### Main
 
 TRed, TWhite, Red, White = M.CollectData(Total_T_Red, Total_T_White, Total_Red, Total_White)
@@ -17,7 +25,21 @@ TRed, TWhite, Red, White = M.CollectData(Total_T_Red, Total_T_White, Total_Red, 
 # EnhanceData()
 
 Train_Feat = []; Train_Label = []; Test_Data = []
-UsedFeatures = [1, 1, 1, 1, 1, 1, 1]
+UsedFeatures = [
+    "Circularity" * 1, 
+    "Area" * 1, 
+    "Perimeter" * 1, 
+    "Local Binary Pattern" * 1, 
+    "Histogram Mean" * 1, 
+    "Histogram Entropy" * 1, 
+    "Histogram Standard Deviation" * 1,
+    "Total Red Values" * 1,
+    "Total Green Values" * 1,
+    "Total Blue Values" * 1,
+    "Euler Number" * 1
+    ]
+
+print(C.BLUE, "Activated Features:\n", UsedFeatures, C.END)
 
 for Image in TRed:
     Features = M.ExtractFeaturesOfData(Image, UsedFeatures)
@@ -39,4 +61,4 @@ for Image in White:
 
 
 Results = M.RunDataThroughSVM(Train_Feat, Train_Label, Test_Data, Total_Red)
-M.PrintResults(Results, Total_Red + Total_White)
+M.PrintResults(Results, Total_Red + Total_White, C)

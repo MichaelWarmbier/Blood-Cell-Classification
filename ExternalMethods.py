@@ -65,6 +65,11 @@ def ExtractFeaturesOfData(OriginalImage, FeatureFlag):
     if FeatureFlag[3]: FeatureList += LBP(OriginalImage)
     if FeatureFlag[4]: FeatureList.append(HistogramFeatures(OriginalImage)[1])
     if FeatureFlag[5]: FeatureList.append(HistogramFeatures(OriginalImage)[2])
+    if FeatureFlag[5]: FeatureList.append(HistogramFeatures(OriginalImage)[3])
+    if FeatureFlag[6]: FeatureList.append(ColorTotal(OriginalImage, "R"))
+    if FeatureFlag[7]: FeatureList.append(ColorTotal(OriginalImage, "G"))
+    if FeatureFlag[8]: FeatureList.append(ColorTotal(OriginalImage, "B"))
+    if FeatureFlag[9]: FeatureList.append(EulerNumber(OriginalImage))
 
     return FeatureList
 
@@ -89,9 +94,9 @@ def RunDataThroughSVM(train_feat, train_label, test_data, LowRange):
 
     return AdjustedResults
 
-def PrintResults(Results, Total):
+def PrintResults(Results, Total, C):
     for R in range(len(Results)):
-        print("Correct results of kernal " + str(R) + ":", str(round(Results[R]/Total * 100, 2)) + '%')
+        print(C.GREEN, "Correct results of kernal " + str(R) + ":", str(round(Results[R]/Total * 100, 2)) + '%', C.END)
 
 #################### Feature Methods
 
@@ -119,6 +124,22 @@ def HistogramFeatures(OriginalImage):
     Entropy = -np.sum(NormalizedHistogram * np.log2(NormalizedHistogram + 1e-10))
     StandardDeviation = np.std(Histogram)
     return [Histogram, Mean, Entropy, StandardDeviation]
+
+def ColorTotal(OriginalImage, Color="R"):
+    B, G, R = cv2.split(OriginalImage)
+    if (Color == "G"): return np.sum(G)
+    if (Color == "B"): return np.sum(B)
+    return np.sum(R)
+
+def EulerNumber(OriginalImage):
+    Thresh = IsolateForegroundFromBackground(OriginalImage)[1]
+    _, Labels, Info, _ = cv2.connectedComponentsWithStats(Thresh, connectivity=8)
+    ObjectTotal = len(Info) - 1
+    HoleTotal = 0
+    for Stat in Info[1:]:
+        if Stat[cv2.CC_STAT_AREA] < 0: HoleTotal += 1
+    return ObjectTotal - HoleTotal
+
 
 #################### Utility Methods
 
