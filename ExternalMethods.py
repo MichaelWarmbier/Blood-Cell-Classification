@@ -2,10 +2,26 @@
 #################### External Data
 ########################################
 
-import cv2, math
+import cv2, math, time
 import numpy as np
 from sklearn import svm
 from skimage import feature
+
+########################################
+#################### External Data
+########################################
+
+class C:
+    BLUE = "\033[94m"
+    CYAN = "\033[96m"
+    GREEN = "\033[92m"
+    RED = "\033[31m"
+    MAG = "\33[35m"
+    YELLOW = "\33[33m"
+    END = "\033[0m"
+    
+FirstImage = True
+StartTime = time.time()
 
 ########################################
 #################### Subroutines
@@ -35,11 +51,20 @@ def CollectData(T_Group_1, T_Group_2, Group_1, Group_2):
     return TrainingRed, TrainingWhite, Red, White
 
 def EnhanceData(OriginalImage, EnhancementFlag): 
+    global FirstImage
     Final = OriginalImage
-    if (EnhancementFlag[0]): Final = GaussianBlur(Final)
-    if (EnhancementFlag[1]): Final = Sharpen(Final)
-    if (EnhancementFlag[2]): Final = MedianFilter(Final, 3)
-    if (EnhancementFlag[3]): Final = ApplyColorWeight(Final, (.8, .3, .1))
+    if (EnhancementFlag[0]):
+        Final = GaussianBlur(Final)
+        if FirstImage: print(C.MAG, "Enhancement Enabled:", C.END, "Gaussian Blur")
+    if (EnhancementFlag[1]):
+        Final = Sharpen(Final)
+        if FirstImage: print(C.MAG, "Enhancement Enabled:", C.END, "Sharpening")
+    if (EnhancementFlag[2]):
+        Final = MedianFilter(Final, 3)
+        if FirstImage: print(C.MAG, "Enhancement Enabled:", C.END, "Median Noise Filter")
+    if (EnhancementFlag[3]):
+        Final = ApplyColorWeight(Final, (.8, .3, .1))
+        if FirstImage: print(C.MAG, "Enhancement Enabled:", C.END, "Color Weight (", C.RED, ".8,", C.GREEN, ".3,", C.BLUE, ".1", C.END, ")")
 
     return Final
 
@@ -67,33 +92,53 @@ def IsolateForegroundFromBackground(OriginalImage, Test=False):
     return [OriginalImage, ThresholdImage, ContourResult, Final]
 
 def ExtractFeaturesOfData(OriginalImage, FeatureFlag):
+    global FirstImage
     FeatureList = []
     ForegroundImage = IsolateForegroundFromBackground(OriginalImage)[3]
 
-    if FeatureFlag[0]: FeatureList.append(Circularity(OriginalImage)[0])
-    if FeatureFlag[1]: FeatureList.append(Circularity(OriginalImage)[1])
-    if FeatureFlag[2]: FeatureList.append(Circularity(OriginalImage)[2])
-    if FeatureFlag[3]: FeatureList += LBP(ForegroundImage)
-    if FeatureFlag[4]: FeatureList.append(HistogramFeatures(ForegroundImage)[1])
-    if FeatureFlag[5]: FeatureList.append(HistogramFeatures(ForegroundImage)[2])
-    if FeatureFlag[5]: FeatureList.append(HistogramFeatures(ForegroundImage)[3])
-    if FeatureFlag[6]: FeatureList.append(ColorTotal(ForegroundImage, "R"))
-    if FeatureFlag[7]: FeatureList.append(ColorTotal(ForegroundImage, "G"))
-    if FeatureFlag[8]: FeatureList.append(ColorTotal(ForegroundImage, "B"))
-    if FeatureFlag[9]: FeatureList.append(EulerNumber(OriginalImage))
+    if FeatureFlag[0]: 
+        FeatureList.append(Circularity(OriginalImage)[0])
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Circularity/Roundness")
+    if FeatureFlag[1]: 
+        FeatureList.append(Circularity(OriginalImage)[1])
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Area")
+    if FeatureFlag[2]: 
+        FeatureList.append(Circularity(OriginalImage)[2])
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Perimeter")
+    if FeatureFlag[3]: 
+        FeatureList += LBP(ForegroundImage)
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Local Binary Pattern")
+    if FeatureFlag[4]: 
+        FeatureList.append(HistogramFeatures(ForegroundImage)[1])
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Histogram Mean")
+    if FeatureFlag[5]: 
+        FeatureList.append(HistogramFeatures(ForegroundImage)[2])
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Histogram Standard Deviation")
+    if FeatureFlag[5]: 
+        FeatureList.append(HistogramFeatures(ForegroundImage)[3])
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Histogram Entropy")
+    if FeatureFlag[6]: 
+        FeatureList.append(ColorTotal(ForegroundImage, "R"))
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Color Total: Red")
+    if FeatureFlag[7]: 
+        FeatureList.append(ColorTotal(ForegroundImage, "G"))
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Color Total: Green")
+    if FeatureFlag[8]: 
+        FeatureList.append(ColorTotal(ForegroundImage, "B"))
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Color Total: Blue")
+    if FeatureFlag[9]: 
+        FeatureList.append(EulerNumber(OriginalImage))
+        if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Euler Number")
 
+    FirstImage = False
     return FeatureList
 
 def RunDataThroughSVM(train_feat, train_label, test_data, LowRange):
     results = []
-    clf = svm.SVC(kernel='linear').fit(train_feat, train_label)
-    results.append(clf.predict(test_data))
-    clf = svm.SVC(kernel='poly').fit(train_feat, train_label)
-    results.append(clf.predict(test_data))
-    clf = svm.SVC(kernel='rbf').fit(train_feat, train_label)
-    results.append(clf.predict(test_data))
-    clf = svm.SVC(kernel='sigmoid').fit(train_feat, train_label)
-    results.append(clf.predict(test_data))
+    clf = svm.SVC(kernel='linear').fit(train_feat, train_label); results.append(clf.predict(test_data))
+    clf = svm.SVC(kernel='poly').fit(train_feat, train_label); results.append(clf.predict(test_data))
+    clf = svm.SVC(kernel='rbf').fit(train_feat, train_label); results.append(clf.predict(test_data))
+    clf = svm.SVC(kernel='sigmoid').fit(train_feat, train_label); results.append(clf.predict(test_data))
 
     AdjustedResults = []
     for result in results:
@@ -105,9 +150,13 @@ def RunDataThroughSVM(train_feat, train_label, test_data, LowRange):
 
     return AdjustedResults
 
-def PrintResults(Results, Total, C):
-    for R in range(len(Results)):
-        print(C.GREEN, "Correct results of kernal " + str(R) + ":", str(round(Results[R]/Total * 100, 2)) + '%', C.END)
+def PrintResults(Results, Total):
+    global StartTime
+    print(C.GREEN, "\n Correct results of LINEAR Kernal:", C.END, str(round(Results[0] / Total * 100, 2)) + '%')
+    print(C.GREEN, "Correct results of POLY Kernal:", C.END, str(round(Results[1] / Total * 100, 2)) + '%')
+    print(C.GREEN, "Correct results of RBF Kernal:", C.END, str(round(Results[2] / Total * 100, 2)) + '%')
+    print(C.GREEN, "Correct results of SIGMOID Kernal:", C.END, str(round(Results[3] / Total * 100, 2)) + '%')
+    print(C.YELLOW, "\n] Application Finished Successfully with a duration of:", C.END, str(round(time.time() - StartTime, 2))+ "s\n")
 
 ########################################
 #################### Feature Methods
@@ -118,7 +167,7 @@ def Circularity(OriginalImage):
     Contours, _ = cv2.findContours(Foreground, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     Contour = Contours[0]
     A = cv2.contourArea(Contour)
-    P = cv2.arcLength(Contour, True)
+    P = cv2.arcLength(Contour, True) + 1e-10
     C = 4 * np.pi * (A / (P * P))
     return [round(C, 4), round(A, 4), round(P, 1)]
 

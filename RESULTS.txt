@@ -1,0 +1,116 @@
+
+Enhancement(s): NONE
+
+Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   |  
+-----------------------------------------------------------------------------------------------------------------------------
+Feature #1: Circularity         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #2: Area                | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #3: Perimeter           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #4: LBP                 | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #5: Hist. Mean          | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #6: Hist. STD           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #7: Hist. Entropy       | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #8: Euler Number        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Hist. Features ONLY             | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Geometric Features ONLY         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #1: Circularity EXC.    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #2: Area EXC.           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #3: Perimeter EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #4: LBP EXC.            | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #5: Hist. Mean EXC.     | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #6: Hist. STD EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #7: Hist. Entropy EXC.  | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #8: Euler Number EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+
+Enhancement(s): Gaussian Blur, Sharpening
+
+Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   |  
+-----------------------------------------------------------------------------------------------------------------------------
+Feature #1: Circularity         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #2: Area                | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #3: Perimeter           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #4: LBP                 | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #5: Hist. Mean          | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #6: Hist. STD           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #7: Hist. Entropy       | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #8: Euler Number        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Hist. Features ONLY             | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Geometric Features ONLY         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #1: Circularity EXC.    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #2: Area EXC.           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #3: Perimeter EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #4: LBP EXC.            | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #5: Hist. Mean EXC.     | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #6: Hist. STD EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #7: Hist. Entropy EXC.  | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #8: Euler Number EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+
+Enhancement(s): Guassian Blur, Median Noise Filter
+
+Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   |  
+-----------------------------------------------------------------------------------------------------------------------------
+Feature #1: Circularity         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #2: Area                | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #3: Perimeter           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #4: LBP                 | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #5: Hist. Mean          | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #6: Hist. STD           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #7: Hist. Entropy       | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #8: Euler Number        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Hist. Features ONLY             | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Geometric Features ONLY         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #1: Circularity EXC.    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #2: Area EXC.           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #3: Perimeter EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #4: LBP EXC.            | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #5: Hist. Mean EXC.     | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #6: Hist. STD EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #7: Hist. Entropy EXC.  | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #8: Euler Number EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+
+Enhancement(s): Gaussian Blur, Sharpening, Median Noise Filter
+
+Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   |  
+-----------------------------------------------------------------------------------------------------------------------------
+Feature #1: Circularity         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #2: Area                | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #3: Perimeter           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #4: LBP                 | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #5: Hist. Mean          | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #6: Hist. STD           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #7: Hist. Entropy       | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #8: Euler Number        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Hist. Features ONLY             | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Geometric Features ONLY         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #1: Circularity EXC.    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #2: Area EXC.           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #3: Perimeter EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #4: LBP EXC.            | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #5: Hist. Mean EXC.     | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #6: Hist. STD EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #7: Hist. Entropy EXC.  | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #8: Euler Number EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+
+Enhancement(s): Color Adjustment
+
+Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   |  
+-----------------------------------------------------------------------------------------------------------------------------
+Feature #1: Circularity         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #2: Area                | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #3: Perimeter           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #4: LBP                 | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #5: Hist. Mean          | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #6: Hist. STD           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #7: Hist. Entropy       | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #8: Euler Number        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Hist. Features ONLY             | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Geometric Features ONLY         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #1: Circularity EXC.    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #2: Area EXC.           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #3: Perimeter EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #4: LBP EXC.            | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #5: Hist. Mean EXC.     | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #6: Hist. STD EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #7: Hist. Entropy EXC.  | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature #8: Euler Number EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+
