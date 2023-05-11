@@ -114,19 +114,19 @@ def ExtractFeaturesOfData(OriginalImage, FeatureFlag):
     if FeatureFlag[5]: 
         FeatureList.append(HistogramFeatures(ForegroundImage)[2])
         if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Histogram Standard Deviation")
-    if FeatureFlag[5]: 
+    if FeatureFlag[6]: 
         FeatureList.append(HistogramFeatures(ForegroundImage)[3])
         if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Histogram Entropy")
-    if FeatureFlag[6]: 
+    if FeatureFlag[7]: 
         FeatureList.append(ColorTotal(ForegroundImage, "R"))
         if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Color Total: Red")
-    if FeatureFlag[7]: 
+    if FeatureFlag[8]: 
         FeatureList.append(ColorTotal(ForegroundImage, "G"))
         if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Color Total: Green")
-    if FeatureFlag[8]: 
+    if FeatureFlag[9]: 
         FeatureList.append(ColorTotal(ForegroundImage, "B"))
         if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Color Total: Blue")
-    if FeatureFlag[9]: 
+    if FeatureFlag[10]: 
         FeatureList.append(EulerNumber(OriginalImage))
         if FirstImage: print(C.CYAN, "Feature Enabled:", C.END, "Euler Number")
 
@@ -219,16 +219,6 @@ def IsolateObjects(Original, Thresh):
   
   return isolatedObjects
 
-def RemoveColorSpace(OriginalImage, rR=False, rG=False, rB=False):
-    B, G, R = cv2.split(OriginalImage)
-    
-    if (rR): R = R * 0
-    if (rG): G = G * 0
-    if (rB): B = B * 0
-
-    NewImage = cv2.merge((B, G, R))
-    return NewImage
-
 def GlobalThreshold(OriginalImage, T = 255/2):
    OriginalImage = cv2.cvtColor(OriginalImage, cv2.COLOR_BGR2GRAY)
    _, thresholded = cv2.threshold(OriginalImage, T, 255, cv2.THRESH_BINARY)
@@ -313,7 +303,7 @@ def ApplyColorWeight(OriginalImage, W=(1, 1, 1)):
     return NewImage
 
 ########################################
-#################### Filter Methods
+#################### Inversion Methods
 ########################################
 
 def Invert(OriginalImage):

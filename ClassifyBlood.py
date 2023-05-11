@@ -3,6 +3,7 @@
 ########################################
 
 import ExternalMethods as M
+import sys
 
 ########################################
 #################### Internal Data
@@ -32,13 +33,19 @@ UsedFeatures = [
 UsedEnhancements = [
         "Blurring" * 1,
         "Sharpening" * 1,
-        "Noise Reduction" * 1,
+        "Noise Reduction" * 0,
         "Color Weight" * 0
     ]
 
 ########################################
 #################### Main
 ######################################## 
+
+#################### Step #0: Take in CLI Arguments (If Applicable)
+
+if (len(sys.argv) > 1):
+    for Value in range(len(UsedFeatures)):
+        UsedFeatures[Value] = int(sys.argv[Value + 1])
 
 #################### Step #1: Organize Data Into Lists
 TRed, TWhite, Red, White = M.CollectData(Total_T_Red, Total_T_White, Total_Red, Total_White)
