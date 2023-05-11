@@ -32,8 +32,8 @@ UsedFeatures = [
 
 UsedEnhancements = [
         "Blurring" * 1,
-        "Sharpening" * 1,
-        "Noise Reduction" * 0,
+        "Sharpening" * 0,
+        "Noise Reduction" * 1,
         "Color Weight" * 0
     ]
 

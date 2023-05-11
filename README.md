@@ -218,4 +218,10 @@
 
 ## <p align="center">Final Results</p>
 
-*to be added
+<p align="center">
+    <img src="https://media.discordapp.net/attachments/1065328426032058470/1106128502488563773/image.png">
+    <img src="https://cdn.discordapp.com/attachments/1065328426032058470/1106128502882836491/image.png">
+    <img src="https://cdn.discordapp.com/attachments/1065328426032058470/1106128503247732806/image.png">
+    <img src="https://cdn.discordapp.com/attachments/1065328426032058470/1106128604502433902/image.png">
+    <img src="https://cdn.discordapp.com/attachments/1065328426032058470/1106128604766687254/image.png">
+</p>

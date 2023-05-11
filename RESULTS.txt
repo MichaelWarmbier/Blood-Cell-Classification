@@ -58,79 +58,88 @@ ALL FEATURES                    | 99.67%             | 80.20%           | 87.73%
 
 Enhancement(s): Guassian Blur, Median Noise Filter
 
-Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   |  
------------------------------------------------------------------------------------------------------------------------------
-Feature #1: Circularity         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #2: Area                | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #3: Perimeter           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #4: LBP                 | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #5: Hist. Mean          | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #6: Hist. STD           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #7: Hist. Entropy       | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #8: Color Values        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #9: Euler Number        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Hist. Features ONLY             | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Geometric Features ONLY         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #1: Circularity EXC.    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #2: Area EXC.           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #3: Perimeter EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #4: LBP EXC.            | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #5: Hist. Mean EXC.     | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #6: Hist. STD EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #7: Hist. Entropy EXC.  | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #8: Color Values EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #9: Euler Number EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-ALL FEATURES                    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   | C I
+|------------------ Isolation Tests -----------------------------------------------------------------------------------------|
+Feature #1: Circularity         | 51.72%             | 48.28%           | 47.30%          | 65.63%             |  1.78s      | ✓ ↑
+Feature #2: Area                | 68.74%             | 69.23%           | 70.21%          | 42.55%             |  3.42s      | ✓ ↑
+Feature #3: Perimeter           | 64.32%             | 63.99%           | 63.67%          | 50.90%             |  1.68s      | ✓ ↓
+Feature #4: LBP                 | 84.94%             | 65.14%           | 63.34%          | 50.74%             |  9.01s      | ✓ ↑
+Feature #5: Hist. Mean          | 66.12%             | 66.28%           | 66.28%          | 49.59%             |  4.57s      | ✓ ↑
+Feature #6: Hist. STD           | 68.09%             | 67.92%           | 67.92%          | 65.63%             |  2.87s      | ✓ ↓
+Feature #7: Hist. Entropy       | 62.36%             | 62.03%           | 65.96%          | 65.63%             |  2.97s      | ✓ ↓
+Feature #8: Color Values        | 99.84%             | 90.18%           | 96.56%          | 77.58%             |  1.14s      | ✓ ↑
+Feature #9: Euler Number        | 63.01%             | 65.63%           | 63.01%          | 50.74%             |  1.84s      | ✓ ↑
+|------------------ Category Tests ------------------------------------------------------------------------------------------|
+Hist. Features ONLY             | 69.72%             | 66.28%           | 65.96%          | 85.63%             |  8.47s      | ✓ ↓
+Geometric Features ONLY         | 68.25%             | 69.07%           | 70.21%          | 65.63%             |  3.81s      | ✓ ↑
+|------------------ Removal Tests -------------------------------------------------------------------------------------------|
+Feature #1: Circularity EXC.    | 99.84%             | 81.67%           | 91.65%          | 92.96%             | 16.39s      | ✓ -
+Feature #2: Area EXC.           | 99.84%             | 81.67%           | 91.65%          | 92.96%             | 16.55s      | ✓ -
+Feature #3: Perimeter EXC.      | 99.84%             | 81.83%           | 91.65%          | 92.96%             | 16.49s      | ✓ -
+Feature #4: LBP EXC.            | 99.84%             | 82.82%           | 91.65%          | 90.34%             |  8.85s      | ✓ -
+Feature #5: Hist. Mean EXC.     | 99.84%             | 81.83%           | 91.65%          | 92.96%             | 15.37s      | ✓ -
+Feature #6: Hist. STD EXC.      | 99.84%             | 81.67%           | 91.65%          | 92.96%             | 15.21s      | ✓ -
+Feature #7: Hist. Entropy EXC.  | 99.84%             | 81.83%           | 91.65%          | 92.96%             | 15.55s      | ✓ -
+Feature #8: Color Values EXC.   | 86.58%             | 66.12%           | 66.12%          | 52.05%             | 16.91s      | ✓ -
+Feature #9: Euler Number EXC.   | 99.84%             | 81.83%           | 91.65%          | 92.96%             | 16.14s      | ✓ -
+|------------------ Final Test ----------------------------------------------------------------------------------------------| 
+ALL FEATURES                    | 99.84%             | 81.83%           | 91.65%          | 92.96%             | 17.04s      | ✓ ↑
 
-Enhancement(s): Gaussian Blur, Sharpening, Median Noise Filter
+Enhancement(s): Gaussian Blur, Sharpening, Median Noise Filter, Color Adjustment
 
-Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   |  
------------------------------------------------------------------------------------------------------------------------------
-Feature #1: Circularity         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #2: Area                | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #3: Perimeter           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #4: LBP                 | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #5: Hist. Mean          | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #6: Hist. STD           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #7: Hist. Entropy       | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #8: Color Values        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #9: Euler Number        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Hist. Features ONLY             | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Geometric Features ONLY         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #1: Circularity EXC.    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #2: Area EXC.           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #3: Perimeter EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #4: LBP EXC.            | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #5: Hist. Mean EXC.     | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #6: Hist. STD EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #7: Hist. Entropy EXC.  | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #8: Color Values EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #9: Euler Number EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-ALL FEATURES                    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   | C I
+|------------------ Isolation Tests -----------------------------------------------------------------------------------------|
+Feature #1: Circularity         | 65.63%             | 65.63%           | 62.36%          | 65.63%             |  1.32s      | ✓ ↑
+Feature #2: Area                | 64.81%             | 65.63%           | 66.61%          | 52.54%             |  1.30s      | ✓ ↓
+Feature #3: Perimeter           | 65.79%             | 65.96%           | 65.30%          | 65.30%             |  1.23s      | ✓ ↑
+Feature #4: LBP                 | 89.20%             | 72.83%           | 69.07%          | 73.16%             |  9.08s      | ✓ ↑
+Feature #5: Hist. Mean          | 63.34%             | 62.52%           | 62.36%          | 56.30%             |  3.77s      | ✓ ↓
+Feature #6: Hist. STD           | 64.16%             | 64.32%           | 64.81%          | 65.63%             |  2.75s      | ✓ ↓
+Feature #7: Hist. Entropy       | 98.04%             | 98.04%           | 97.55%          | 61.87%             |  2.71s      | ✓ ↑
+Feature #8: Color Values        | 77.50%             | 65.14%           | 64.65%          | 65.63%             |  1.15s      | ✓ ↓
+Feature #9: Euler Number        | 65.63%             | 65.63%           | 65.63%          | 65.63%             |  1.43s      | ✓ ↑
+|------------------ Category Tests ------------------------------------------------------------------------------------------|
+Hist. Features ONLY             | 94.44%             | 62.52%           | 62.52%          | 65.63%             |  6.45s      | ✓ ↑
+Geometric Features ONLY         | 65.79%             | 66.78%           | 66.45%          | 65.63%             |  2.51s      | ✓ ↑
+|------------------ Removal Tests -------------------------------------------------------------------------------------------|
+Feature #1: Circularity EXC.    | 77.58%             | 64.81%           | 64.32%          | 64.98%             | 15.13s      | ✓ -
+Feature #2: Area EXC.           | 77.50%             | 64.81%           | 64.32%          | 64.81%             | 15.05s      | ✓ -
+Feature #3: Perimeter EXC.      | 77.58%             | 64.81%           | 64.32%          | 64.98%             | 15.21s      | ✓ -
+Feature #4: LBP EXC.            | 77.58%             | 64.98%           | 64.65%          | 65.63%             |  7.51s      | ✓ -
+Feature #5: Hist. Mean EXC.     | 77.58%             | 64.81%           | 64.32%          | 64.98%             | 13.97s      | ✓ -
+Feature #6: Hist. STD EXC.      | 77.58%             | 64.81%           | 64.32%          | 64.98%             | 13.84s      | ✓ -
+Feature #7: Hist. Entropy EXC.  | 77.58%             | 64.81%           | 64.32%          | 64.98%             | 13.85s      | ✓ -
+Feature #8: Color Values EXC.   | 95.50%             | 66.61%           | 66.61%          | 60.56%             | 15.45s      | ✓ -
+Feature #9: Euler Number EXC.   | 77.58%             | 64.81%           | 64.32%          | 64.98%             | 15.06s      | ✓ -
+|------------------ Final Test ----------------------------------------------------------------------------------------------|
+ALL FEATURES                    | 77.58%             | 64.81%           | 64.32%          | 64.65%             | 15.59s      | ✓ ↓
 
 Enhancement(s): Color Adjustment
 
-Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   |  
------------------------------------------------------------------------------------------------------------------------------
-Feature #1: Circularity         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #2: Area                | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #3: Perimeter           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #4: LBP                 | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #5: Hist. Mean          | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #6: Hist. STD           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #7: Hist. Entropy       | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #8: Color Values        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #9: Euler Number        | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Hist. Features ONLY             | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Geometric Features ONLY         | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #1: Circularity EXC.    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #2: Area EXC.           | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #3: Perimeter EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #4: LBP EXC.            | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #5: Hist. Mean EXC.     | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #6: Hist. STD EXC.      | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #7: Hist. Entropy EXC.  | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #8: Color Values EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-Feature #9: Euler Number EXC.   | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
-ALL FEATURES                    | 00.00%             | 00.00%           | 00.00%          | 00.00%             | 00.00s      |
+Feature(s)                      | LINEAR Kernal Acc. | POLY Kernal Acc. | RBF Kernal Acc. | SIGMOID Kernal Acc. | Duration   | C I
+|------------------ Isolation Tests -----------------------------------------------------------------------------------------|
+Feature #1: Circularity         | 65.63%             | 65.63%           | 65.63%          | 65.63%             |  1.05s      | ✓ ↑ 
+Feature #2: Area                | 64.81%             | 65.63%           | 66.61%          | 52.54%             |  1.03s      | ✓ ↓
+Feature #3: Perimeter           | 65.79%             | 65.96%           | 65.30%          | 65.63%             |  0.91s      | ✓ ↓
+Feature #4: LBP                 | 89.36%             | 72.67%           | 71.03%          | 72.83%             |  8.72s      | ✓ ↓
+Feature #5: Hist. Mean          | 62.85%             | 62.52%           | 62.52%          | 57.12%             |  2.65s      | ✓ ↓
+Feature #6: Hist. STD           | 64.16%             | 65.47%           | 64.81%          | 65.63%             |  2.52s      | ✓ ↓
+Feature #7: Hist. Entropy       | 97.71%             | 98.04%           | 97.05%          | 58.92%             |  2.40s      | ✓ ↑ 
+Feature #8: Color Values        | 78.56%             | 64.16%           | 64.16%          | 65.63%             |  4.87s      | ✓ ↓
+Feature #9: Euler Number        | 65.63%             | 65.63%           | 65.63%          | 65.63%             |  1.19s      | ✓ ↓
+|------------------ Category Tests ------------------------------------------------------------------------------------------|
+Hist. Features ONLY             | 95.58%             | 62.52%           | 62.36%          | 65.63%             |  5.61s      | ✓ ↑ 
+Geometric Features ONLY         | 65.79%             | 66.78%           | 66.45%          | 65.63%             |  2.23s      | ✓ ↓
+|------------------ Removal Tests -------------------------------------------------------------------------------------------|
+Feature #1: Circularity EXC.    | 78.72%             | 64.16%           | 63.67%          | 62.19%             | 14.93s      | ✓ -
+Feature #2: Area EXC.           | 78.56%             | 64.16%           | 63.67%          | 62.19%             | 14.75s      | ✓ -
+Feature #3: Perimeter EXC.      | 78.72%             | 64.16%           | 63.67%          | 62.19%             | 15.48s      | ✓ -
+Feature #4: LBP EXC.            | 78.72%             | 64.16%           | 64.16%          | 65.63%             |  7.37s      | ✓ -
+Feature #5: Hist. Mean EXC.     | 78.72%             | 64.16%           | 63.67%          | 62.19%             | 13.50s      | ✓ -
+Feature #6: Hist. STD EXC.      | 78.72%             | 64.16%           | 63.67%          | 62.19%             | 13.60s      | ✓ -
+Feature #7: Hist. Entropy EXC.  | 78.72%             | 64.16%           | 63.67%          | 62.19%             | 13.59s      | ✓ -
+Feature #8: Color Values EXC.   | 91.98%             | 66.78%           | 66.61%          | 60.56%             | 15.33s      | ✓ -
+Feature #9: Euler Number EXC.   | 78.72%             | 64.16%           | 63.67%          | 62.19%             | 14.44s      | ✓ -
+|------------------ Final Test ----------------------------------------------------------------------------------------------|
+ALL FEATURES                    | 78.72%             | 64.16%           | 63.67%          | 62.03%             | 15.04s      | ✓ ↓
 
