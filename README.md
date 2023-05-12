@@ -1,6 +1,6 @@
 # Blood-Cell-Classification
 
-&nbsp;&nbsp;&nbsp;&nbsp;This project was created for the 2023 Spring Semester Image Processing course at the College of Staten Island (CUNY), lectured by Sos Agaian. Any updates made _after_ the date of May 19th, 2023 were made _after_ the project deadline. 
+&nbsp;&nbsp;&nbsp;&nbsp;This project was created for the 2023 Spring Semester Image Processing course at the College of Staten Island (CUNY), lectured by Sos Agaian. Any updates made _after_ the date of May 12th, 2023 were made _after_ the project deadline. 
 
 **Primary Goal**: to create an application for classifying a specific set of images into binary categories. The context of this specific project is _blood cells_. This project is created with several features meant to be tested in various orders in order to best optimize the algorithm for speed and accuracy.
 
