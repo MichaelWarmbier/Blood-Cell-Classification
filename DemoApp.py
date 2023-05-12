@@ -28,12 +28,12 @@ Total_T_White = 50
 Total_T_Red = 100
 Train_Feat = []; Train_Label = []; Test_Data = []
 Train1, Train2, _, _ = M.CollectData(100, 50, 0, 0, False)
-UsedEnhancements = [1, 1, 1, 0]
+UsedEnhancements = [1, 1, 0, 0]
 UsedFeatures = [1, 0, 1, 0, 1, 1, 1, 1, 1, 1, 1]
 
 OriginalImage = M.ContrastStretch(OriginalImage)
 Objects = M.IsolateObjects(OriginalImage, 255 - M.GlobalThreshold(OriginalImage, 130))
-print("\nTotal Objects:", len(Objects), "\n")
+print(C.INFO, "\nTotal Objects:", C.END, len(Objects), "\n")
 
 # Red
 for Image in Train1:
@@ -58,7 +58,7 @@ for Object in Objects:
 
 clf = svm.SVC(kernel='linear').fit(Train_Feat, Train_Label); Results = clf.predict(Test_Data)
 
-ResultImage = 0
+ResultImage = OriginalImage
 for V in range(len(Results)):
     if (Results[V]):    
         contours, _ = cv2.findContours(255 - Objects[V], cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
