@@ -8,7 +8,7 @@ from sklearn import svm
 from skimage import feature
 
 ########################################
-#################### External Data
+#################### Internal Data
 ########################################
 
 class C:
@@ -27,7 +27,7 @@ StartTime = time.time()
 #################### Subroutines
 ########################################
 
-def CollectData(T_Group_1, T_Group_2, Group_1, Group_2):
+def CollectData(T_Group_1, T_Group_2, Group_1, Group_2, Test=True):
 
     # Initialize Data
     TrainingRed = []
@@ -42,11 +42,12 @@ def CollectData(T_Group_1, T_Group_2, Group_1, Group_2):
     for imgIndex in range(T_Group_2):
         TrainingWhite.append(cv2.imread("Data/Training_White/T_White_" + str(imgIndex) + ".jpg"))
 
-    for imgIndex in range(Group_1):
-        Red.append(cv2.imread("Data/Red/Red_" + str(imgIndex) + ".jpg"))
-        
-    for imgIndex in range(Group_2):
-        White.append(cv2.imread("Data/White/White_" + str(imgIndex) + ".jpg"))
+    if Test:
+        for imgIndex in range(Group_1):
+            Red.append(cv2.imread("Data/Red/Red_" + str(imgIndex) + ".jpg"))
+            
+        for imgIndex in range(Group_2):
+            White.append(cv2.imread("Data/White/White_" + str(imgIndex) + ".jpg"))
    
     return TrainingRed, TrainingWhite, Red, White
 
@@ -182,7 +183,7 @@ def HistogramFeatures(OriginalImage):
     Histogram = cv2.calcHist([OriginalImage], [0], None, [256], [0, 256])
     Histogram = OriginalImage.flatten()
     Mean = sum(Histogram / 256)
-    NormalizedHistogram = Histogram / np.sum(Histogram)
+    NormalizedHistogram = Histogram / (np.sum(Histogram) + 1e9)
     Entropy = -np.sum(NormalizedHistogram * np.log2(NormalizedHistogram + 1e-10))
     StandardDeviation = np.std(Histogram)
     return [Histogram, Mean, Entropy, StandardDeviation]

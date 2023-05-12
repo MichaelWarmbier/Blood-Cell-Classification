@@ -2,7 +2,11 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;This project was created for the 2023 Spring Semester Image Processing course at the College of Staten Island (CUNY), lectured by Sos Agaian. Any updates made _after_ the date of May 19th, 2023 were made _after_ the project deadline. 
 
-**Goal**: to create an application for classifying a specific set of images into binary categories. The context of this specific project is _blood cells_. This project is created with several features meant to be tested in various orders in order to best optimize the algorithm for speed and accuracy.
+**Primary Goal**: to create an application for classifying a specific set of images into binary categories. The context of this specific project is _blood cells_. This project is created with several features meant to be tested in various orders in order to best optimize the algorithm for speed and accuracy.
+
+**Secondary Goal**: to display the applications use by extending it to solve a problem. In the context of this specific project, that problem is _object detection_.
+
+<br>
 
 ## <p align="center">Image Details</p>
 
@@ -11,7 +15,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;A total of **761** images were used. Each image is sourced from the credited image database throguh manually isolation of cells from a large batch of cells. Of the 761 images:
 
 <p align="center">50 were used for <em>training</em> white blood cells<br>
-100 were usesd for <em>training</em> red blood celels<br>
+100 were usesd for <em>training</em> red blood cells<br>
 210 were used for <em>classification testing</em> of white blood cells<br>
 401 were used for <em>classification testing</em> of red blood cells<br></p>
 
@@ -62,6 +66,7 @@
 \---- `ClassifyBlood.py`<br>
 \---- `ExternalMethods.py`<br>
 \---- `README.md`<br>
+\---- `DemoApp.py`<br>
 \---- `RESULTS.txt`<br>
 \---- `/Data`<br>
 \----\---- `/Data_Examples`<br>
@@ -74,6 +79,7 @@
 
 `ClassifyBlood.py`: primary application script and main routine.<br>
 `ExternalMethods.py`: library of custom methods and other external libraries.<br>
+`DemoApp.py`: Demostration of the applications use in object detection.<br>
 `RESULTS.txt`: _manual_ entry of results from testing.<br>
 `/Data`: collection of all source images organized into folders.<br>
 
