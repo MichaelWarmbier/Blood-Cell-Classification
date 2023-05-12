@@ -19,6 +19,34 @@
 210 were used for <em>classification testing</em> of white blood cells<br>
 401 were used for <em>classification testing</em> of red blood cells<br></p>
 
+## <p align="center">Installing and Running</p>
+
+To run this application, you must have Python installed on your system as well as the following packages:
+
+- `scikit-image`
+- `scikit-learn`
+- `opencv-python`
+- `numpy`
+
+You can run the application by going to the source folder, opening any **terminal** and running the following command:
+
+`python ClassifyBlood.py`
+
+You can specify features to utilize by adding all eleven flags at the end:
+
+`python ClassifyBlood.py <flags>`
+
+Example:
+
+`python ClassifyBlood.py 0 0 0 1 1 1 1 1 1 1 1`
+
+<br>
+
+
+You can run the **demo app** by using the following command:
+
+`python DemoApp.py <filename>`
+
 ## <p align="center">Application Structure</p>
 
 <p align="center"><img src="https://cdn.discordapp.com/attachments/1065328426032058470/1106099311554613268/Untitled_Diagram.drawio.png"></p>
